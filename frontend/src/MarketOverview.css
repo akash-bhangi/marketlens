@@ -1,0 +1,58 @@
+.market-overview-title {
+    margin-top: 2rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.market-overview h4 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+}
+
+.market-overview p {
+    font-size: 1.25rem;
+    color: #848387;
+    font-weight: 400;
+}
+
+.market-overview {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+}
+
+.market-overview .card {
+    padding-left: 1.5rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    border-radius: 1rem;
+    background-color: #fff;
+    border: 1px solid #848387;
+}
+
+.watchlist-news-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.watchlist-news-grid .watchlist,
+.watchlist-news-grid .news {
+    padding-left: 1.5rem;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    border-radius: 1rem;
+    background-color: #fff;
+    border: 1px solid #848387;
+}
+
+.watchlist-content,
+.news-content {
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+    text-align: center;
+}
