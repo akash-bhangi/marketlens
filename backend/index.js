@@ -7,7 +7,7 @@ const app = express();
 const cors = require("cors");
 const { connectDB } = require("./config/db");
 const { getIndianBusinessNews } = require("./services/newsService");
-const { getStockQuote, getStockIndex } = require("./services/stockService");
+const { getStockQuote, getStockIndex, getSearch } = require("./services/stockService");
 
 const port = process.env.PORT || 5000;
 
@@ -58,6 +58,20 @@ app.get("/api/index", async (req, res) => {
         });
     }
 })
+app.get("/api/search", async (req, res) => {
+    try {
+        const query = req.query.query;
+        const response = await getSearch(query);
+        console.log(response);
+        res.json(response);
+    } catch (error) {
+        req.status(error.response?.status || 502).json({
+            msg: error.reponse?.message || error.message || "Unable to fetch the search results."
+        })
+    }
+
+});
+
 
 async function startServer() {
     try {

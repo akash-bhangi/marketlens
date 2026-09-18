@@ -32,7 +32,7 @@ function App() {
   return (
     <div className="app-shell">
       <Sidebar />
-      <main className="main-content" style={{ marginLeft: "250px", padding: "1.5rem" }}>
+      <main className="main-content">
         <Header backendStatus={backendStatus} />
         <MarketOverview index={index} />
       </main>

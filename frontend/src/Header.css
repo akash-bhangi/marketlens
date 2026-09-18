@@ -14,6 +14,9 @@
 }
 
 .search-section {
+    display: flex;
+    align-items: center;
+    gap: 12px;
     margin-right: 80px;
 }
 
@@ -31,4 +34,8 @@
     color: white;
     border: none;
     cursor: pointer;
+}
+
+.search-section button:hover {
+    background-color: rgb(60, 57, 57);
 }

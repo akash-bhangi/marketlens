@@ -8,3 +8,8 @@
     margin: 0;
     padding: 0;
 }
+
+.main-content {
+    margin-left: 250px;
+    padding: 1.5rem;
+}

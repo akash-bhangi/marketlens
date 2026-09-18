@@ -1,22 +1,36 @@
 import "./Header.css"
+import SearchBox from './SearchBox'
+import { useEffect, useState } from 'react'
+
 function Header({ backendStatus }) {
+    const [searchQuery, setSearchQuery] = useState("");
+    const [stock, setStock] = useState([]);
+
+    useEffect(() => {
+        setTimeout(() => {
+            async function searchStock() {
+                if (searchQuery.length > 1) {
+                    try {
+                        const res = await fetch(`${import.meta.env.VITE_API_BASE_URL}/search?query=${searchQuery}`);
+                        const data = await res.json();
+                        setStock(data);
+                    }
+                    catch (err) {
+                        console.log(err);
+                    }
+                }
+            }
+            searchStock();
+        }, 1000)
+    }, [searchQuery])
     return (
         <>
-            <header className="topbar" style={{ display: "flex", justifyContent: "space-between", alignItems: "center" }}>
+            <header className="topbar">
                 <div>
                     <h1>Market Dashboard</h1>
                     <span className="api-status">{backendStatus}</span>
                 </div>
-
-                <section className="search-section">
-                    <input
-                        type="search"
-                        placeholder="Search Indian stocks "
-                        disabled
-
-                    />
-                    <button disabled>Search</button>
-                </section>
+                <SearchBox stock={stock} setSearchQuery={setSearchQuery} />
             </header>
         </>
     )

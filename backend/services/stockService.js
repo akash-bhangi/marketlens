@@ -39,4 +39,21 @@ async function getStockIndex() {
     }));
 
 }
-module.exports = { getStockQuote, getStockIndex }
+
+async function getSearch(query) {
+    const result = await yahooFinance.search(query, {
+        region: 'IN',
+        lang: 'en-IN',
+        newsCount: 0
+    });
+    return (result.quotes || [])
+        .filter(item => item.isYahooFinance && item.quoteType === "EQUITY")
+        .map((item) => ({
+            symbol: item.symbol,
+            shortName: item.shortname,
+            longName: item.longname,
+            type: item.quoteType,
+            exchange: item.exchange
+        }));
+}
+module.exports = { getStockQuote, getStockIndex, getSearch }
