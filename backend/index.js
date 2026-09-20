@@ -36,7 +36,11 @@ app.get("/api/news", async (req, res) => {
 
 app.get("/api/stock/:symbol", async (req, res) => {
     try {
-        const stock = await getStockQuote(req.params.symbol);
+        const symbol = req.params.symbol;
+        if (!symbol) {
+            return res.status(400).json({ message: "Stock symbol is required." });
+        }
+        const stock = await getStockQuote(symbol);
         res.json(stock);
     } catch (error) {
         console.error("Error fetching stock quote:", error.response?.data || error.message);
@@ -48,7 +52,6 @@ app.get("/api/stock/:symbol", async (req, res) => {
 
 app.get("/api/index", async (req, res) => {
     try {
-        console.log("Fetching index quote...");
         const index = await getStockIndex();
         res.json(index);
     } catch (error) {
@@ -61,11 +64,13 @@ app.get("/api/index", async (req, res) => {
 app.get("/api/search", async (req, res) => {
     try {
         const query = req.query.query;
+        if (!query) {
+            return res.json([]);
+        }
         const response = await getSearch(query);
-        console.log(response);
         res.json(response);
     } catch (error) {
-        req.status(error.response?.status || 502).json({
+        res.status(error.response?.status || 502).json({
             msg: error.reponse?.message || error.message || "Unable to fetch the search results."
         })
     }

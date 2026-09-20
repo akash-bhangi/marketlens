@@ -1,15 +1,9 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
 .app-shell {
     margin: 0;
     padding: 0;
 }
 
 .main-content {
-    margin-left: 250px;
+    margin-left: 260px;
     padding: 1.5rem;
 }

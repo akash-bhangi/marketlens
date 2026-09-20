@@ -8,10 +8,9 @@ function MarketOverview({ index }) {
                 {index && index.length > 0 ? (
                     index?.map((idx) => {
                         return (
-                            <div className="card">
+                            <div className="card" key={idx?.symbol}>
                                 <h4>{idx?.name}</h4>
-                                <p>₹{idx?.price.toLocaleString('en-IN')}<span style={{ color: idx?.change >= 0 ? "green" : "red", marginLeft: "0.5rem", fontSize: "1rem" }}>({idx?.change >= 0 ? "+" : ""}{idx?.changePercent?.toFixed(2)}%)</span></p>
-
+                                <p>₹{idx?.price?.toLocaleString('en-IN')}<span style={{ color: idx?.change >= 0 ? "green" : "red", marginLeft: "0.5rem", fontSize: "1rem" }}>({idx?.change >= 0 ? "+" : ""}{idx?.changePercent?.toFixed(2)}%)</span></p>
                             </div>
                         )
                     })

@@ -1,5 +1,8 @@
 import './Sidebar.css'
+import { Link, useLocation } from 'react-router-dom';
+
 function Sidebar() {
+    const location = useLocation();
     return (
         <>
             <aside className="sidebar">
@@ -7,12 +10,15 @@ function Sidebar() {
                 <p className="subtitle">Indian market intelligence</p>
 
                 <nav className="navigation">
-                    <button className="nav-item active">Dashboard</button>
+                    <Link to="/" className={`nav-item ${location.pathname === "/" ? "active" : ""}`} >
+                        Dashboard
+                    </Link>
+
                     <button className="nav-item">Markets</button>
                     <button className="nav-item">Watchlist</button>
                     <button className="nav-item">Portfolio</button>
                 </nav>
-            </aside></>
+            </aside ></>
     )
 }
 export default Sidebar

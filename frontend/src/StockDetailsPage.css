@@ -1,0 +1,112 @@
+.stock-details .card,
+.stock-details-card {
+    width: 90%;
+    margin: 20px;
+    border: 1px solid black;
+    border-radius: 10px;
+    height: auto;
+    padding-bottom: 10px;
+}
+
+.tags {
+    margin-top: 1rem;
+    margin-left: 1rem;
+}
+
+.tags span {
+    font-size: 0.8rem;
+    background-color: #c3c3c5ff;
+    padding: 4px;
+    border-radius: 0.2rem;
+}
+
+.card-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.card-header h2 {
+    font-size: 1.5rem;
+    margin-top: 0.8rem;
+    margin-left: 1rem;
+}
+
+.company-subtitle {
+    font-size: 0.8rem;
+    color: #6B7280;
+    margin-top: 0.35rem;
+    margin-left: 1rem;
+    width: 70%;
+    /* Display max 2 lines then show ... */
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.button {
+    margin-left: auto;
+    display: flex;
+    gap: 10px;
+}
+
+.btn {
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    margin-right: 10px;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background-color: #2f3c5a;
+    transition: transform 0.2s ease-in-out;
+}
+
+.btn-primary:hover {
+    background-color: #141c2d;
+    transform: scale(1.05);
+}
+
+.btn-secondary {
+    background-color: rgb(125, 227, 78);
+    transition: transform 0.2s ease-in-out;
+}
+
+.btn-secondary:hover {
+    background-color: rgb(64, 138, 50);
+    transform: scale(1.05);
+}
+
+.current-price {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-top: 0.7rem;
+    margin-left: 1rem;
+}
+
+.current-price h2 {
+    font-size: 2rem;
+    margin-top: 0.1rem;
+    margin-left: 0.4rem;
+    font-weight: bold;
+}
+
+.current-price span {
+    margin-left: 1rem;
+    margin-top: 0.1rem;
+    font-weight: bold;
+}
+
+.positive {
+    color: #237e23;
+}
+
+.negative {
+    color: #cb2d2dff;
+}
