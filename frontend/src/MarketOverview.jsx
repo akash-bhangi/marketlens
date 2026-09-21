@@ -37,4 +37,4 @@ function MarketOverview({ index }) {
 
     )
 }
-export default MarketOverview;
+export default MarketOverview;  

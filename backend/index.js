@@ -7,7 +7,7 @@ const app = express();
 const cors = require("cors");
 const { connectDB } = require("./config/db");
 const { getIndianBusinessNews } = require("./services/newsService");
-const { getStockQuote, getStockIndex, getSearch } = require("./services/stockService");
+const { getStockQuote, getStockIndex, getSearch, getStockHistory } = require("./services/stockService");
 
 const port = process.env.PORT || 5000;
 
@@ -71,13 +71,29 @@ app.get("/api/search", async (req, res) => {
         res.json(response);
     } catch (error) {
         res.status(error.response?.status || 502).json({
-            msg: error.reponse?.message || error.message || "Unable to fetch the search results."
+            message: error.response?.data?.message || error.message || "Unable to fetch the search results."
         })
     }
 
 });
 
-
+app.get("/api/stock/:symbol/history", async (req, res) => {
+    try {
+        const symbol = req.params.symbol;
+        if (!symbol) {
+            return res.status(400).json({ message: "Stock Symbol is required." })
+        }
+        const queryRange = req.query.range || "1M";
+        const history = await getStockHistory(symbol, queryRange);
+        res.json(history);
+    }
+    catch (error) {
+        console.log("Error ocuured during accessing of Stock History", error.response?.data || error.message);
+        res.status(error.response?.status || 502).json({
+            message: error.response?.data?.message || error.message || "Unable to fetch the stock history.",
+        })
+    }
+})
 async function startServer() {
     try {
         await connectDB();

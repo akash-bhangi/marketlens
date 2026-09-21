@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import "./StockDetailsPage.css";
+import StockChart from "./StockChart";
 
 export default function StockDetailsPage() {
     const { symbol } = useParams();
@@ -70,10 +71,10 @@ export default function StockDetailsPage() {
                         [ {stockData?.change >= 0 ? "+" : ""}{stockData?.change?.toFixed(2)} ({stockData?.changePercent?.toFixed(2)}%)]
                     </span>
                 </div>
-                <div className="card-body">
-
-                </div>
             </div >
+            <div className="stock-chart">
+                <StockChart symbol={stockData.symbol} />
+            </div>
         </div>
     );
 }

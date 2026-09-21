@@ -75,4 +75,64 @@ async function getSearch(query) {
             exchange: item.exchange
         }));
 }
-module.exports = { getStockQuote, getStockIndex, getSearch }
+
+async function getStockHistory(querySymbol, range) {
+    const now = new Date();
+    let period1 = new Date();
+    let interval = "1d";
+
+    switch (range) {
+        case "1D":
+            period1.setDate(now.getDate() - 1);
+            interval = "5m";
+            break;
+        case "1W":
+            period1.setDate(now.getDate() - 7);
+            interval = "15m";
+            break;
+        case "1M":
+            period1.setMonth(now.getMonth() - 1);
+            interval = "1d";
+            break;
+        case "1Y":
+            period1.setFullYear(now.getFullYear() - 1);
+            interval = "1wk";
+            break;
+        case "MAX":
+            period1.setFullYear(now.getFullYear() - 5);
+            interval = "1mo";
+            break;
+        default:
+            period1.setMonth(now.getMonth() - 1);
+            interval = "1d";
+            break;
+    }
+
+    const result = await yahooFinance.chart(querySymbol, {
+        period1: period1.toISOString().split("T")[0],
+        interval: interval
+    });
+    if (!result || !result.quotes) {
+        return [];
+    }
+
+    return result.quotes
+        .filter(q => q.close !== null && q.close !== undefined)
+        .map(q => {
+            const close = Number(q.close.toFixed(2));
+            const open = Number((q.open ?? close).toFixed(2));
+            const high = Number((q.high ?? Math.max(open, close)).toFixed(2));
+            const low = Number((q.low ?? Math.min(open, close)).toFixed(2));
+            return {
+                date: q.date,
+                price: close,
+                open,
+                high,
+                low,
+                close
+            };
+        });
+}
+
+
+module.exports = { getStockQuote, getStockIndex, getSearch, getStockHistory }

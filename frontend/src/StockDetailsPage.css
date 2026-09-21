@@ -73,12 +73,12 @@
 }
 
 .btn-secondary {
-    background-color: rgb(125, 227, 78);
+    background-color: #059669;
     transition: transform 0.2s ease-in-out;
 }
 
 .btn-secondary:hover {
-    background-color: rgb(64, 138, 50);
+    background-color: #059669;
     transform: scale(1.05);
 }
 
