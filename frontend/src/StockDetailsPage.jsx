@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import "./StockDetailsPage.css";
 import StockChart from "./StockChart";
+import KeyMetrics from "./KeyMetrics";
 
 export default function StockDetailsPage() {
     const { symbol } = useParams();
@@ -72,8 +73,9 @@ export default function StockDetailsPage() {
                     </span>
                 </div>
             </div >
-            <div className="stock-chart">
+            <div className="chart-and-metrics">
                 <StockChart symbol={stockData.symbol} />
+                <KeyMetrics stockData={stockData} />
             </div>
         </div>
     );

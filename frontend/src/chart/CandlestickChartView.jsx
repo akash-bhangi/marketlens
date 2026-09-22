@@ -7,7 +7,7 @@ import {
     YAxis,
     Tooltip
 } from "recharts";
-import { formatDate, getXAxisTicks } from './chartUtils';
+import { formatDate, getXAxisTicks, isFiveYearRange } from './chartUtils';
 import CandlestickShape from './CandlestickShape';
 import CandlestickTooltip from './CandlestickTooltip';
 
@@ -28,7 +28,7 @@ export default function CandlestickChartView({
                     fontSize={12}
                     tickLine={false}
                     axisLine={false}
-                    minTickGap={range === "MAX" ? 0 : 35}
+                    minTickGap={isFiveYearRange(range) ? 0 : 35}
                 />
                 <YAxis
                     domain={[candleDomainMin, candleDomainMax]}

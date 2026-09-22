@@ -1,11 +1,12 @@
-.stock-details .card,
 .stock-details-card {
     width: 90%;
     margin: 20px;
-    border: 1px solid black;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
     border-radius: 10px;
     height: auto;
     padding-bottom: 10px;
+    align-items: stretch;
 }
 
 .tags {

@@ -7,7 +7,7 @@ import {
     YAxis,
     Tooltip
 } from "recharts";
-import { formatDate, formatTooltipDate, getXAxisTicks } from './chartUtils';
+import { formatDate, formatTooltipDate, getXAxisTicks, isFiveYearRange } from './chartUtils';
 
 export default function AreaChartView({ history, range, isDown, chartThemeColor }) {
     return (
@@ -31,7 +31,7 @@ export default function AreaChartView({ history, range, isDown, chartThemeColor 
                     fontSize={12}
                     tickLine={false}
                     axisLine={false}
-                    minTickGap={range === "MAX" ? 0 : 35}
+                    minTickGap={isFiveYearRange(range) ? 0 : 35}
                 />
                 <YAxis
                     domain={["auto", "auto"]}

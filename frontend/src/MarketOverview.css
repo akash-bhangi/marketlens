@@ -29,8 +29,8 @@
     padding-top: 1rem;
     padding-bottom: 1rem;
     border-radius: 1rem;
-    background-color: #fff;
-    border: 1px solid #848387;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
 }
 
 .watchlist-news-grid {
@@ -46,8 +46,8 @@
     padding-top: 1rem;
     padding-bottom: 1rem;
     border-radius: 1rem;
-    background-color: #fff;
-    border: 1px solid #848387;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
 }
 
 .watchlist-content,

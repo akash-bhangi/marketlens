@@ -98,6 +98,9 @@ async function getStockHistory(querySymbol, range) {
             period1.setFullYear(now.getFullYear() - 1);
             interval = "1wk";
             break;
+        case "5Y":
+        case "5Years":
+        case "5yer":
         case "MAX":
             period1.setFullYear(now.getFullYear() - 5);
             interval = "1mo";

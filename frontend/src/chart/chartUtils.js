@@ -1,6 +1,12 @@
 // chartUtils.js - Date formatting and calculations for stock charts
 
-export const TIMEFRAMES = ["1D", "1W", "1M", "1Y", "MAX"];
+export const TIMEFRAMES = ["1D", "1W", "1M", "1Y", "5Y"];
+
+/**
+ * Check if range represents the 5-year timeframe
+ */
+export const isFiveYearRange = (range) =>
+    range === "5Y" || range === "5Years" || range === "5yer" || range === "MAX";
 
 /**
  * Format X-axis tick labels based on active range
@@ -11,7 +17,7 @@ export function formatDate(isoString, range) {
     if (range === "1D") {
         return date.toLocaleTimeString("en-IN", { hour: "2-digit", minute: "2-digit" });
     }
-    if (range === "MAX") {
+    if (isFiveYearRange(range)) {
         return date.getFullYear().toString();
     }
     return date.toLocaleDateString("en-IN", { day: "numeric", month: "short" });
@@ -26,17 +32,17 @@ export function formatTooltipDate(isoString, range) {
     if (range === "1D") {
         return date.toLocaleTimeString("en-IN", { hour: "2-digit", minute: "2-digit" });
     }
-    if (range === "MAX" || range === "1Y") {
+    if (isFiveYearRange(range) || range === "1Y") {
         return date.toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" });
     }
     return date.toLocaleDateString("en-IN", { day: "numeric", month: "short" });
 }
 
 /**
- * Extract clean single-year ticks for MAX range to avoid duplicate labels
+ * Extract clean single-year ticks for 5Y range to avoid duplicate labels
  */
 export function getXAxisTicks(history, range) {
-    if (range !== "MAX" || !history || history.length === 0) return undefined;
+    if (!isFiveYearRange(range) || !history || history.length === 0) return undefined;
     return history
         .filter((item, index, arr) => {
             const currentYear = new Date(item.date).getFullYear();
