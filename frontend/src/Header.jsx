@@ -3,7 +3,7 @@ import SearchBox from './SearchBox'
 import { useEffect, useState } from 'react'
 import { useNavigate, useLocation } from "react-router-dom";
 
-function Header({ backendStatus }) {
+function Header() {
     const [searchQuery, setSearchQuery] = useState(null);
     const [stock, setStock] = useState([]);
     const navigate = useNavigate();
@@ -61,7 +61,6 @@ function Header({ backendStatus }) {
                         (
                             <div>
                                 <h1>Market Dashboard</h1>
-                                <span className="api-status">{backendStatus}</span>
                             </div>
                         )}
                 <SearchBox

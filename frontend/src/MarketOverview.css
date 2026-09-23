@@ -50,9 +50,30 @@
     border: 1px solid #e5e7eb;
 }
 
-.watchlist-content,
-.news-content {
+.watchlist-content {
     margin-top: 4rem;
     margin-bottom: 4rem;
     text-align: center;
+}
+
+.news-list {
+    list-style: none;
+    padding: 0;
+    overflow-y: scroll;
+    max-height: 300px;
+    scrollbar-width: thin;
+    scrollbar-color: #888 #f1f1f1;
+}
+
+.news-list li {
+    padding: 10px;
+}
+
+.news-list li a {
+    color: black;
+    text-decoration: none;
+}
+
+.news-list a:hover {
+    text-decoration: underline;
 }

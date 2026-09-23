@@ -5,7 +5,7 @@ async function getIndianBusinessNews() {
         params: {
             country: "in",
             topic: "business",
-            max: 5,
+            max: 10,
             lang: "en",
             apikey: process.env.GNEWS_API
         }

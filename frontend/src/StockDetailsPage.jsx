@@ -77,6 +77,20 @@ export default function StockDetailsPage() {
                 <StockChart symbol={stockData.symbol} />
                 <KeyMetrics stockData={stockData} />
             </div>
+            <div className="analysis-and-news">
+                <div className="analysis">
+                    <h2>Analysts Rating</h2>
+                    <div>
+                        <p style={{ textAlign: "center", paddingTop: "100px" }}>AI Agent will Provide Rating soon........</p>
+                    </div>
+                </div>
+                <div className="news">
+                    <h2>Market News</h2>
+                    <div>
+                        <p style={{ textAlign: "center", paddingTop: "100px" }}>News will Provide Soon........</p>
+                    </div>
+                </div>
+            </div>
         </div>
     );
 }

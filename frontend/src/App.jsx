@@ -7,8 +7,8 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import StockDetailsPage from "./StockDetailsPage"
 
 function App() {
-  const [backendStatus, setBackendStatus] = useState("Checking API...");
   const [index, setIndex] = useState([]);
+  const [news, setNews] = useState([]);
 
   useEffect(() => {
     async function connectBackend() {
@@ -16,15 +16,27 @@ function App() {
         const response = await fetch(
           `${import.meta.env.VITE_API_BASE_URL}/dashboard`
         );
+        if (!response.ok) {
+          throw new Error("Failed to fetch dashboard");
+        }
         const indexResponse = await fetch(
           `${import.meta.env.VITE_API_BASE_URL}/index`
         );
-        const data = await response.json();
+        if (!indexResponse.ok) {
+          throw new Error("Failed to fetch index");
+        }
+        const newsResponse = await fetch(
+          `${import.meta.env.VITE_API_BASE_URL}/news`
+        );
+        if (!newsResponse.ok) {
+          throw new Error("Failed to fetch news");
+        }
         const indexData = await indexResponse.json();
-        setBackendStatus(data.msg);
+        const newsData = await newsResponse.json();
         setIndex(indexData);
-      } catch {
-        setBackendStatus("API unavailable");
+        setNews(newsData);
+      } catch (error) {
+        console.error("Failed to fetch data", error);
       }
     }
 
@@ -36,9 +48,9 @@ function App() {
       <div className="app-shell">
         <Sidebar />
         <main className="main-content">
-          <Header backendStatus={backendStatus} />
+          <Header />
           <Routes>
-            <Route path="/" element={<MarketOverview index={index} />} />
+            <Route path="/" element={<MarketOverview index={index} news={news} />} />
             <Route path="/stock/:symbol" element={<StockDetailsPage />} />
           </Routes>
         </main>

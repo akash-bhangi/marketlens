@@ -6,13 +6,6 @@
     padding-bottom: 1rem;
 }
 
-.api-status {
-    font-size: 0.9rem;
-    font-weight: 500;
-    color: #999;
-    margin-top: 0.5rem;
-}
-
 .search-section {
     display: flex;
     align-items: center;

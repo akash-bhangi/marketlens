@@ -94,6 +94,8 @@ app.get("/api/stock/:symbol/history", async (req, res) => {
         })
     }
 })
+
+
 async function startServer() {
     try {
         await connectDB();

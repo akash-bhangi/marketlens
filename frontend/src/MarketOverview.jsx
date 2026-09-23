@@ -1,6 +1,7 @@
 import './MarketOverview.css';
 
-function MarketOverview({ index }) {
+function MarketOverview({ index, news }) {
+    // console.log(news);
     return (
         <>
             <h2 className="market-overview-title">Market Overview</h2>
@@ -28,8 +29,24 @@ function MarketOverview({ index }) {
                 <article className="news">
                     <h3 className="eyebrow">Market news</h3>
                     <div className="news-content">
-                        <h4>Latest business headlines</h4>
-                        <p>News will appear here after the dashboard data step.</p>
+
+                        {
+                            !news && news.length === 0 ?
+                                <p>No news available</p> :
+                                <ul className='news-list'>
+                                    {
+                                        news.map((article) => {
+                                            return (
+                                                <li key={article.url}>
+                                                    <a href={article?.url}>{article?.title}</a>
+                                                </li>
+                                            )
+                                        }
+                                        )
+                                    }
+                                </ul>
+                        }
+
                     </div>
                 </article>
             </section>

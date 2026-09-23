@@ -111,3 +111,32 @@
 .negative {
     color: #cb2d2dff;
 }
+
+.chart-and-metrics {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+}
+
+.analysis-and-news {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin: 30px;
+}
+
+.analysis,
+.news {
+    background-color: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    padding: 10px;
+    height: 350px;
+
+}
+
+.analysis h2,
+.news h2 {
+    font-size: 1.4rem;
+    margin: 10px 12px;
+}
