@@ -8,6 +8,7 @@ const cors = require("cors");
 const { connectDB } = require("./config/db");
 const { getIndianBusinessNews } = require("./services/newsService");
 const { getStockQuote, getStockIndex, getSearch, getStockHistory } = require("./services/stockService");
+const authRouter = require("./routes/authRoutes.js");
 
 const port = process.env.PORT || 5000;
 
@@ -95,6 +96,7 @@ app.get("/api/stock/:symbol/history", async (req, res) => {
     }
 })
 
+app.use("/api/auth", authRouter);
 
 async function startServer() {
     try {
