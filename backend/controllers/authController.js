@@ -1,5 +1,7 @@
+require("dotenv").config();
 const User = require("../models/User.js");
 const bcrypt = require("bcryptjs");
+const jwt = require("jsonwebtoken");
 
 const registerUser = async (req, res) => {
     try {
@@ -40,9 +42,55 @@ const registerUser = async (req, res) => {
 
     }
     catch (error) {
-        console.log(error);
         res.status(500).json({ message: "Error occurred while registering" });
     }
 }
 
-module.exports = { registerUser }
+
+const generateToken = (id) => {
+    return jwt.sign({ id }, process.env.JWT_SECRET, {
+        expiresIn: "2d"
+    });
+}
+
+const loginUser = async (req, res) => {
+    try {
+        const { email, password } = req.body;
+
+        if (!email || !password) {
+            return res.status(400).json({ message: "Please enter email and password" });
+        }
+
+        if (password.length < 7) {
+            return res.status(400).json({ message: "Password must be atleast 7 characters" });
+        }
+
+        const user = await User.findOne({ email });
+
+        if (!user) {
+            return res.status(404).json({ message: "Invalid credentials" });
+        }
+
+        const passswordMatch = await bcrypt.compare(password, user.password);
+
+        if (!passswordMatch) {
+            return res.status(401).json({ message: "Invalid credentials" })
+        }
+
+        res.status(200).json({
+            message: "login success",
+            token: generateToken(user._id),
+            user: {
+                _id: user._id,
+                name: user.name,
+                email: user.email,
+                virtualBalance: user.virtualBalance,
+            }
+        });
+    }
+    catch (error) {
+        res.status(500).json({ message: "Error occurred while Login" });
+    }
+}
+
+module.exports = { registerUser, loginUser }
