@@ -93,4 +93,16 @@ const loginUser = async (req, res) => {
     }
 }
 
-module.exports = { registerUser, loginUser }
+const getMe = (req, res) => {
+    try {
+        res.status(200).json({
+            user: req.user
+        });
+    }
+    catch (error) {
+        res.status(500).json({ message: "Error occurred while fetching user" });
+    }
+
+}
+
+module.exports = { registerUser, loginUser, getMe }
