@@ -42,38 +42,122 @@
 
 .watchlist-news-grid .watchlist,
 .watchlist-news-grid .news {
-    padding-left: 1.5rem;
-    padding-top: 1rem;
-    padding-bottom: 1rem;
+    padding: 1.5rem;
     border-radius: 1rem;
     background: #ffffff;
     border: 1px solid #e5e7eb;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
+    height: 440px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
 }
 
 .watchlist-content {
-    margin-top: 4rem;
-    margin-bottom: 4rem;
+    margin: auto 0;
     text-align: center;
+}
+
+.news .eyebrow {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #111827;
+    margin-top: 0;
+    margin-bottom: 1rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid #f3f4f6;
+    flex-shrink: 0;
+}
+
+.news-content {
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
 }
 
 .news-list {
     list-style: none;
     padding: 0;
-    overflow-y: scroll;
-    max-height: 300px;
+    margin: 0;
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
     scrollbar-width: thin;
-    scrollbar-color: #888 #f1f1f1;
+    scrollbar-color: #cbd5e1 #f8fafc;
 }
 
-.news-list li {
-    padding: 10px;
+.news-list::-webkit-scrollbar {
+    width: 6px;
 }
 
-.news-list li a {
-    color: black;
+.news-list::-webkit-scrollbar-track {
+    background: #f8fafc;
+    border-radius: 4px;
+}
+
+.news-list::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 4px;
+}
+
+.news-item {
+    padding-top: 0.85rem;
+    padding-bottom: 0.85rem;
+    display: flex;
+    flex-direction: column;
+    word-break: break-word;
+    overflow-wrap: break-word;
+}
+
+.news-title {
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #1e293b;
     text-decoration: none;
+    line-height: 1.45;
+    transition: color 0.2s ease;
+    word-break: break-word;
+    overflow-wrap: break-word;
 }
 
-.news-list a:hover {
+.news-title:hover {
+    color: #2563eb;
     text-decoration: underline;
+}
+
+.news-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-top: 0.4rem;
+    font-size: 0.825rem;
+}
+
+.news-source {
+    color: #2563eb;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+}
+
+.news-bullet {
+    color: #94a3b8;
+    font-size: 0.75rem;
+}
+
+.news-time {
+    color: #64748b;
+    font-weight: 400;
+}
+
+.news-divider {
+    border: none;
+    height: 1px;
+    background-color: #e2e8f0;
+    margin-top: 0.85rem;
+    margin-bottom: 0;
+    width: 100%;
+}
+
+.news-item:last-child .news-divider {
+    display: none;
 }

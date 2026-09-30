@@ -1,0 +1,370 @@
+/* Split Page Shell */
+.auth-page {
+  display: flex;
+  height: 100vh;
+  max-height: 100vh;
+  width: 100vw;
+  background-color: #ffffff;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+/* Left Navy Panel */
+.auth-left-panel {
+  width: 44%;
+  background: linear-gradient(180deg, #0a0f1d 0%, #111a2e 100%);
+  color: #ffffff;
+  padding: 2.5rem 3.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+  height: 100vh;
+  max-height: 100vh;
+  overflow: hidden;
+}
+
+.auth-brand-header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.brand-logo-icon {
+  font-size: 1.6rem;
+  background: rgba(255, 255, 255, 0.08);
+  padding: 0.4rem 0.6rem;
+  border-radius: 8px;
+}
+
+.brand-title {
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.brand-tagline {
+  font-size: 0.8rem;
+  color: #94a3b8;
+}
+
+.auth-left-content {
+  margin: auto 0;
+}
+
+.live-market-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #10b981;
+  letter-spacing: 0.05em;
+  margin-bottom: 1.25rem;
+}
+
+.live-dot {
+  width: 7px;
+  height: 7px;
+  background-color: #10b981;
+  border-radius: 50%;
+  box-shadow: 0 0 8px #10b981;
+}
+
+.auth-headline {
+  font-size: 2.4rem;
+  font-weight: 700;
+  line-height: 1.18;
+  margin: 0 0 1rem 0;
+  letter-spacing: -0.03em;
+}
+
+.auth-subheadline {
+  font-size: 0.95rem;
+  color: #94a3b8;
+  line-height: 1.55;
+  max-width: 420px;
+  margin: 0 0 1.75rem 0;
+}
+
+/* Mini Market Card */
+.auth-market-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 14px;
+  padding: 1.25rem 1.5rem;
+  max-width: 380px;
+  backdrop-filter: blur(10px);
+}
+
+.market-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.market-index-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #94a3b8;
+}
+
+.market-pill-change {
+  background: rgba(16, 185, 129, 0.15);
+  color: #34d399;
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.2rem 0.55rem;
+  border-radius: 9999px;
+}
+
+.market-card-price {
+  font-size: 1.85rem;
+  font-weight: 700;
+  margin: 0.4rem 0;
+  letter-spacing: -0.02em;
+}
+
+.sparkline-wrapper {
+  margin: 0.5rem 0 0.8rem 0;
+}
+
+.sparkline-svg {
+  width: 100%;
+  height: 44px;
+  display: block;
+}
+
+.market-stats-row {
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding-top: 0.75rem;
+}
+
+.stat-block {
+  display: flex;
+  flex-direction: column;
+  gap: 0.15rem;
+}
+
+.stat-label {
+  font-size: 0.65rem;
+  font-weight: 600;
+  color: #64748b;
+  letter-spacing: 0.04em;
+}
+
+.stat-val {
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: #e2e8f0;
+}
+
+.status-open {
+  color: #34d399;
+}
+
+.auth-left-footer {
+  display: flex;
+  gap: 0.6rem;
+  font-size: 0.75rem;
+  color: #64748b;
+}
+
+/* Right Panel */
+.auth-right-panel {
+  flex: 1;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem 4rem;
+  height: 100vh;
+  max-height: 100vh;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.auth-form-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-width: 420px;
+  width: 100%;
+  margin: auto 0;
+}
+
+.form-card-inner {
+  max-width: 420px;
+  width: 100%;
+}
+
+.form-title {
+  font-size: 2.1rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0 0 0.4rem 0;
+  letter-spacing: -0.03em;
+}
+
+.form-desc {
+  font-size: 0.9rem;
+  color: #64748b;
+  margin: 0 0 1.5rem 0;
+  line-height: 1.45;
+}
+
+.auth-error-box {
+  background-color: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #dc2626;
+  padding: 0.65rem 0.85rem;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  margin-bottom: 1rem;
+}
+
+.form-body {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.field-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.field-group label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.input-with-icon {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.input-icon {
+  position: absolute;
+  left: 0.85rem;
+  font-size: 0.9rem;
+  color: #94a3b8;
+  pointer-events: none;
+}
+
+.input-with-icon input {
+  width: 100%;
+  padding: 0.75rem 2.5rem 0.75rem 2.6rem;
+  border: 1.5px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+  box-sizing: border-box;
+}
+
+.input-with-icon input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+.toggle-password-btn {
+  position: absolute;
+  right: 0.75rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.checkbox-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  margin-top: 0.2rem;
+}
+
+.checkbox-row input {
+  margin-top: 0.2rem;
+  cursor: pointer;
+}
+
+.checkbox-row label {
+  font-size: 0.8rem;
+  color: #64748b;
+  line-height: 1.4;
+  cursor: pointer;
+}
+
+.auth-options-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85rem;
+  margin-top: 0.1rem;
+}
+
+.checkbox-row-inline {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: #475569;
+  cursor: pointer;
+}
+
+.forgot-link {
+  color: #2563eb;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.forgot-link:hover {
+  text-decoration: underline;
+}
+
+.submit-auth-btn {
+  background-color: #2563eb;
+  color: #ffffff;
+  border: none;
+  padding: 0.85rem;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.15s ease;
+  margin-top: 0.5rem;
+}
+
+.submit-auth-btn:hover:not(:disabled) {
+  background-color: #1d4ed8;
+}
+
+.submit-auth-btn:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.form-subfooter {
+  text-align: center;
+  margin-top: 1.5rem;
+  font-size: 0.875rem;
+  color: #64748b;
+}
+
+.form-subfooter a {
+  color: #2563eb;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.form-subfooter a:hover {
+  text-decoration: underline;
+}

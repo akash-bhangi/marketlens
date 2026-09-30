@@ -6,8 +6,13 @@ function Sidebar() {
     return (
         <>
             <aside className="sidebar">
-                <div className="brand">MarketLens</div>
-                <p className="subtitle">Indian market intelligence</p>
+                <div className="sidebar-brand-header">
+                    <div className="sidebar-logo-icon">📈</div>
+                    <div>
+                        <div className="sidebar-brand-title">MarketLens</div>
+                        <div className="sidebar-brand-tagline">Indian market intelligence</div>
+                    </div>
+                </div>
 
                 <nav className="navigation">
                     <Link to="/" className={`nav-item ${location.pathname === "/" ? "active" : ""}`} >
