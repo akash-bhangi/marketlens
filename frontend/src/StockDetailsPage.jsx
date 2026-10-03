@@ -3,6 +3,7 @@ import { Link, useParams } from "react-router-dom";
 import "./StockDetailsPage.css";
 import StockChart from "./StockChart";
 import KeyMetrics from "./KeyMetrics";
+import WatchlistButton from "./WatchlistButton";
 
 export default function StockDetailsPage() {
     const { symbol } = useParams();
@@ -61,7 +62,7 @@ export default function StockDetailsPage() {
                 <div className="card-header">
                     <h2>{stockData?.name}</h2>
                     <div className="button">
-                        <button className="btn btn-primary">Add to Watchlist</button>
+                        <WatchlistButton stockData={stockData} />
                         <button className="btn btn-secondary">Buy Shares</button>
                     </div>
                 </div>
