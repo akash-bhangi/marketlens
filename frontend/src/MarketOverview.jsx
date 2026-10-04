@@ -1,4 +1,5 @@
 import './MarketOverview.css';
+import WatchListPanel from './WatchListPanel.jsx';
 
 function getTimeAgo(dateString) {
     if (!dateString) return "2h ago";
@@ -76,14 +77,7 @@ function MarketOverview({ index, news }) {
                 ) : (<p>Loading Market Data...</p>)}
             </section>
             <section className="watchlist-news-grid">
-                <article className="watchlist">
-                    <h3 className="eyebrow">Your watchlist</h3>
-                    <div className="watchlist-content">
-                        <h4>Start tracking stocks</h4>
-                        <p>Saved stocks will appear here after authentication is built.</p>
-                    </div>
-                </article>
-
+                <WatchListPanel />
                 <article className="news">
                     <h3 className="eyebrow">Market news</h3>
                     <div className="news-content">

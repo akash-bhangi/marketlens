@@ -1,0 +1,141 @@
+/* WatchListPanel.css */
+
+.watchlist-empty-state {
+    text-align: center;
+    margin: auto 0;
+    padding: 1.5rem;
+}
+
+.watchlist-state-icon {
+    font-size: 1.8rem;
+    margin: 0 0 0.5rem 0;
+}
+
+.watchlist-empty-state h4 {
+    margin: 0 0 0.5rem 0;
+    color: #0f172a;
+    font-weight: 600;
+}
+
+.watchlist-state-subtitle {
+    color: #64748b;
+    font-size: 0.85rem;
+    margin: 0.5rem 0 1rem 0;
+}
+
+.watchlist-signin-btn {
+    background-color: #141c2d;
+    color: #ffffff;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 0.85rem;
+    font-weight: 600;
+    display: inline-block;
+    transition: background-color 0.2s ease;
+}
+
+.watchlist-signin-btn:hover {
+    background-color: #1e293b;
+}
+
+.watchlist-loading-state {
+    margin: auto 0;
+    text-align: center;
+    color: #64748b;
+    padding: 1.5rem;
+}
+
+.watchlist-loading-text {
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+.watchlist-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    overflow-y: auto;
+    flex: 1;
+}
+
+.watchlist-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 0.5rem;
+    border-bottom: 1px solid #f1f5f9;
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+}
+
+.watchlist-item:hover {
+    background-color: #f8fafc;
+}
+
+.watchlist-item-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+}
+
+.watchlist-item-symbol {
+    font-weight: 700;
+    color: #0f172a;
+    font-size: 0.95rem;
+}
+
+.watchlist-item-name {
+    color: #64748b;
+    font-size: 0.78rem;
+    max-width: 140px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.watchlist-item-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.watchlist-item-price-block {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.15rem;
+}
+
+.watchlist-item-price {
+    font-size: 0.95rem;
+    color: #0f172a;
+}
+
+.watchlist-item-change {
+    font-size: 0.78rem;
+}
+
+.watchlist-item-change.positive {
+    color: #16a34a;
+}
+
+.watchlist-item-change.negative {
+    color: #dc2626;
+}
+
+.watchlist-delete-btn {
+    background: none;
+    border: none;
+    color: #94a3b8;
+    font-size: 1.25rem;
+    cursor: pointer;
+    padding: 0.2rem 0.4rem;
+    border-radius: 4px;
+    transition: color 0.15s ease, background-color 0.15s ease;
+}
+
+.watchlist-delete-btn:hover {
+    color: #dc2626;
+    background-color: #fee2e2;
+}
