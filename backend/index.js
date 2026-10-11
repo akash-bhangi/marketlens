@@ -10,10 +10,12 @@ const { getIndianBusinessNews } = require("./services/newsService");
 const { getStockQuote, getStockIndex, getSearch, getStockHistory } = require("./services/stockService");
 const authRouter = require("./routes/authRoutes.js");
 const watchListRoutes = require("./routes/watchListRoutes.js");
+const portfolioRoutes = require("./routes/portfolioRoutes.js");
 
 const port = process.env.PORT || 5000;
 
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(cors({
     origin: process.env.CLIENT_URL || "http://localhost:5173"
 }));
@@ -99,6 +101,7 @@ app.get("/api/stock/:symbol/history", async (req, res) => {
 
 app.use("/api/auth", authRouter);
 app.use("/api/watchlist", watchListRoutes);
+app.use("/api/portfolio", portfolioRoutes);
 
 async function startServer() {
     try {
