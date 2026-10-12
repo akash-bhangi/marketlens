@@ -101,7 +101,7 @@ app.get("/api/stock/:symbol/history", async (req, res) => {
 
 app.use("/api/auth", authRouter);
 app.use("/api/watchlist", watchListRoutes);
-app.use("/api/portfolio", portfolioRoutes);
+app.use("/api/portfolios", portfolioRoutes);
 
 async function startServer() {
     try {

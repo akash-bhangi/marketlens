@@ -13,7 +13,7 @@ const buyStock = async (req, res) => {
         const qty = Number(quantity);
         const buyPrice = Number(price);
 
-        if (!symbol || !name || isNaN(qty) || qty <= 0 || isNaN(buyPrice) || buyPrice <= 0) {
+        if (!symbol || !name || !exchange || isNaN(qty) || qty <= 0 || isNaN(buyPrice) || buyPrice <= 0) {
             return res.status(400).json({ success: false, message: "Invalid order parameters." });
         }
 
@@ -95,6 +95,10 @@ const buyStock = async (req, res) => {
 
 const sellStock = async (req, res) => {
     try {
+        if (!req.body) {
+            return res.status(400).json({ success: false, message: "Request body is required." });
+        }
+
         const { symbol, quantity, price } = req.body;
         const qty = Number(quantity);
         const sellPrice = Number(price);

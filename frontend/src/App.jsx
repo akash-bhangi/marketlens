@@ -6,6 +6,7 @@ import MarketOverview from "./MarketOverview";
 import StockDetailsPage from "./StockDetailsPage";
 import Register from "./Register";
 import Login from "./Login";
+import WatchlistPage from "./WatchlistPage";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 
 function MainAppShell({ index, news, user, onLoginSuccess, onLogout }) {
@@ -29,6 +30,7 @@ function MainAppShell({ index, news, user, onLoginSuccess, onLogout }) {
         <Routes>
           <Route path="/" element={<MarketOverview index={index} news={news} />} />
           <Route path="/stock/:symbol" element={<StockDetailsPage />} />
+          <Route path="/watchlist" element={<WatchlistPage />} />
         </Routes>
       </main>
     </div>

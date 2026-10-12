@@ -64,7 +64,7 @@ function MarketOverview({ index, news }) {
     return (
         <>
             <h2 className="market-overview-title">Market Overview</h2>
-            <section className="market-overview">
+            <section className="market-overview" >
                 {index && index.length > 0 ? (
                     index?.map((idx) => {
                         return (

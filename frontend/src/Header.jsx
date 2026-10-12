@@ -9,6 +9,7 @@ function Header({ user, onLogout }) {
   const navigate = useNavigate();
   const location = useLocation();
   const isStockPage = location.pathname.startsWith("/stock/");
+  const isWatchlistPage = location.pathname === "/watchlist";
   const stockSymbolFromUrl = isStockPage ? location.pathname.split("/")[2] : null;
   const displayName = stockSymbolFromUrl ? stockSymbolFromUrl.split(".")[0] : "";
 
@@ -39,13 +40,8 @@ function Header({ user, onLogout }) {
       {isStockPage ? (
         <div className="breadcrumb">
           <span
-            style={{
-              cursor: "pointer",
-              color: "#9ca3af",
-            }}
-            onClick={() => {
-              navigate("/");
-            }}
+            style={{ cursor: "pointer", color: "#9ca3af" }}
+            onClick={() => navigate("/")}
           >
             Dashboard
           </span>
@@ -54,11 +50,18 @@ function Header({ user, onLogout }) {
           <span style={{ margin: "0 0.5rem", color: "#9ca3af" }}>›</span>
           <strong>{displayName.toUpperCase()}</strong>
         </div>
+      ) : isWatchlistPage ? (
+        <div className="wl-header-left">
+          <h1 style={{ fontSize: "1.25rem", fontWeight: "700", color: "#0F172A", margin: 0 }}>
+            Watchlist
+          </h1>
+        </div>
       ) : (
         <div>
           <h1>Market Dashboard</h1>
         </div>
       )}
+
 
       <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
         <SearchBox stock={stock} setSearchQuery={setSearchQuery} />

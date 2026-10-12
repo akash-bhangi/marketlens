@@ -18,9 +18,10 @@ function Sidebar() {
                     <Link to="/" className={`nav-item ${location.pathname === "/" ? "active" : ""}`} >
                         Dashboard
                     </Link>
-
-                    <button className="nav-item">Markets</button>
-                    <button className="nav-item">Watchlist</button>
+                    <Link to="/stock/:symbol" className={`nav-item ${location.pathname === "/stock/:symbol" ? "active" : ""}`}>
+                        Stock
+                    </Link>
+                    <Link to="/watchlist" className={`nav-item ${location.pathname === "/watchlist" ? "active" : ""}`}>Watchlist</Link>
                     <button className="nav-item">Portfolio</button>
                 </nav>
             </aside ></>
