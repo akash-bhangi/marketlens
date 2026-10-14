@@ -1,6 +1,6 @@
 .watchlist-page {
   background-color: #F8FAFC;
-  min-height: calc(100vh - 70px);
+  width: 100%;
 }
 
 .wl-heading-bar {
@@ -137,5 +137,241 @@
 
 .wl-badge-red {
   background-color: #FEE2E2;
+  color: #EF4444;
+}
+
+.watchlist-filters {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.wl-filter-slider {
+  display: inline-flex;
+  background-color: #F1F5F9;
+  padding: 4px;
+  border-radius: 10px;
+  gap: 2px;
+}
+
+.wl-filter-btn {
+  padding: 0.45rem 0.85rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  border-radius: 6px;
+  border: none;
+  background-color: transparent;
+  color: #64748B;
+  cursor: pointer;
+  transition: all 0.15s ease;
+
+}
+
+.wl-filter-slider button.active {
+  background-color: #fff;
+  color: #0F172A;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.03);
+}
+
+.wl-filter-slider button:hover {
+  color: #0F172A;
+}
+
+.watchlist-table-card {
+  margin-top: 1rem;
+  background-color: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 12px;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.03);
+  overflow: hidden;
+}
+
+.wl-table-header {
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid #F1F5F9;
+}
+
+.wl-table-title h4 {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #0F172A;
+  letter-spacing: 0.02em;
+}
+
+/* Grid Table Container */
+.wl-grid-table {
+  width: 100%;
+}
+
+/* Header Row */
+.wl-grid-header {
+  display: grid !important;
+  grid-template-columns: 2.2fr 1fr 1fr 1fr 1.5fr 0.8fr 0.9fr 40px !important;
+  align-items: center;
+  background-color: #F8FAFC !important;
+  border-bottom: 1px solid #E2E8F0;
+  padding: 0.75rem 1.5rem !important;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  color: #64748B;
+}
+
+.wl-col-price {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  cursor: pointer;
+}
+
+.wl-sort-indicator {
+  color: #2563EB;
+}
+
+/* Stock Rows */
+.wl-grid-row {
+  display: grid !important;
+  grid-template-columns: 2.2fr 1fr 1fr 1fr 1.5fr 0.8fr 0.9fr 40px !important;
+  align-items: center;
+  padding: 0.95rem 1.5rem !important;
+  border-bottom: 1px solid #F1F5F9;
+  background-color: #FFFFFF;
+  transition: background-color 0.15s ease;
+  font-size: 0.875rem;
+}
+
+.wl-grid-row:last-child {
+  border-bottom: none;
+}
+
+.wl-grid-row:hover {
+  background-color: #F8FAFC;
+}
+
+/* Column Specific Styling */
+.wl-col-company {
+  padding-right: 1rem;
+}
+
+.wl-company-cell {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.wl-initial-badge {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.85rem;
+  flex-shrink: 0;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+.wl-company-name {
+  font-weight: 600;
+  color: #0F172A;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 0.875rem;
+}
+
+.wl-col-symbol {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #475569;
+  letter-spacing: 0.02em;
+}
+
+/* Price: Solid Dark Navy / Black */
+.wl-col-price {
+  font-weight: 700;
+  color: #0F172A !important;
+  font-variant-numeric: tabular-nums;
+  font-size: 0.9rem;
+}
+
+/* Day Change: Green for +ve, Red for -ve */
+.wl-col-change {
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  font-size: 0.85rem;
+}
+
+.wl-col-change.is-pos {
+  color: #16A34A !important; /* Bold green */
+}
+
+.wl-col-change.is-neg {
+  color: #DC2626 !important; /* Bold red */
+}
+
+.wl-col-range {
+  font-size: 0.8rem;
+  color: #64748B;
+  font-variant-numeric: tabular-nums;
+}
+
+.wl-col-volume {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #475569;
+  font-variant-numeric: tabular-nums;
+}
+
+/* Status Pill */
+.wl-col-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 10px;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  background-color: #DCFCE7;
+  color: #15803D;
+  width: fit-content;
+}
+
+.wl-col-status::before {
+  content: "";
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #15803D;
+}
+
+/* Delete / Action Ellipsis Button */
+.wl-col-action {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.wl-delete-btn {
+  background-color: #FFFFFF;
+  border: 1px solid #E2E8F0;
+  border-radius: 6px;
+  color: #94A3B8;
+  cursor: pointer;
+  padding: 2px 8px;
+  font-size: 0.8rem;
+  line-height: 1.2;
+  font-weight: bold;
+  letter-spacing: 1px;
+  transition: all 0.15s ease;
+}
+
+.wl-delete-btn:hover {
+  background-color: #FEE2E2;
+  border-color: #FCA5A5;
   color: #EF4444;
 }

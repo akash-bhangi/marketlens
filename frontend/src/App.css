@@ -1,9 +1,20 @@
-.app-shell {
+body {
+    background-color: #F8FAFC;
+    color: #0F172A;
     margin: 0;
     padding: 0;
 }
 
+.app-shell {
+    margin: 0;
+    padding: 0;
+    background-color: #F8FAFC;
+    min-height: 100vh;
+}
+
 .main-content {
     margin-left: 260px;
-    padding: 1.5rem;
+    padding: 1.5rem 2rem;
+    background-color: #F8FAFC;
+    min-height: 100vh;
 }
