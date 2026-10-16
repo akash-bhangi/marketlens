@@ -1,78 +1,116 @@
-/* WatchListPanel.css */
+/* Professional WatchList Panel Styles */
+.watchlist-panel {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.panel-body {
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
 
 .watchlist-empty-state {
-    text-align: center;
     margin: auto 0;
-    padding: 1.5rem;
+    text-align: center;
+    padding: 2rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
 }
 
-.watchlist-state-icon {
-    font-size: 1.8rem;
-    margin: 0 0 0.5rem 0;
+.empty-state-icon-wrap {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: #F1F5F9;
+    border: 1px solid #E2E8F0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 0.25rem;
 }
 
-.watchlist-empty-state h4 {
-    margin: 0 0 0.5rem 0;
-    color: #0f172a;
-    font-weight: 600;
+.empty-state-title {
+    font-size: 0.95rem;
+    font-weight: 700;
+    color: #0F172A;
+    margin: 0;
 }
 
-.watchlist-state-subtitle {
-    color: #64748b;
-    font-size: 0.85rem;
-    margin: 0.5rem 0 1rem 0;
+.empty-state-subtitle {
+    font-size: 0.78rem;
+    color: #64748B;
+    margin: 0;
+    max-width: 260px;
+    line-height: 1.45;
 }
 
 .watchlist-signin-btn {
-    background-color: #141c2d;
-    color: #ffffff;
-    padding: 0.5rem 1rem;
-    border-radius: 6px;
+    background-color: #0D1322;
+    color: #FFFFFF;
+    padding: 0.45rem 1rem;
+    border-radius: 8px;
     text-decoration: none;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     font-weight: 600;
-    display: inline-block;
-    transition: background-color 0.2s ease;
+    margin-top: 0.5rem;
+    transition: background-color 0.18s ease;
 }
 
 .watchlist-signin-btn:hover {
-    background-color: #1e293b;
+    background-color: #1E293B;
 }
 
 .watchlist-loading-state {
     margin: auto 0;
     text-align: center;
-    color: #64748b;
-    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 2rem;
+}
+
+.loading-spinner-dot {
+    width: 8px;
+    height: 8px;
+    background-color: #38BDF8;
+    border-radius: 50%;
+    animation: pulse-dot 1.4s infinite ease-in-out;
 }
 
 .watchlist-loading-text {
-    font-size: 0.9rem;
+    font-size: 0.825rem;
+    color: #64748B;
     margin: 0;
 }
 
 .watchlist-list {
     list-style: none;
-    padding: 0;
+    padding: 0.5rem 1.25rem;
     margin: 0;
     overflow-y: auto;
     overflow-x: hidden;
     flex: 1;
     scrollbar-width: thin;
-    scrollbar-color: #cbd5e1 #f8fafc;
+    scrollbar-color: #CBD5E1 #F8FAFC;
 }
 
 .watchlist-list::-webkit-scrollbar {
-    width: 6px;
+    width: 5px;
 }
 
 .watchlist-list::-webkit-scrollbar-track {
-    background: #f8fafc;
-    border-radius: 4px;
+    background: #F8FAFC;
 }
 
 .watchlist-list::-webkit-scrollbar-thumb {
-    background: #cbd5e1;
+    background: #CBD5E1;
     border-radius: 4px;
 }
 
@@ -80,32 +118,38 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0.75rem 0.5rem;
-    border-bottom: 1px solid #f1f5f9;
+    padding: 0.75rem 0.25rem;
+    border-bottom: 1px solid #F1F5F9;
     cursor: pointer;
     transition: background-color 0.15s ease;
 }
 
+.watchlist-item:last-child {
+    border-bottom: none;
+}
+
 .watchlist-item:hover {
-    background-color: #f8fafc;
+    background-color: #F8FAFC;
 }
 
 .watchlist-item-info {
     display: flex;
     flex-direction: column;
     gap: 0.15rem;
+    min-width: 0;
 }
 
 .watchlist-item-symbol {
     font-weight: 700;
-    color: #0f172a;
-    font-size: 0.95rem;
+    color: #0F172A;
+    font-size: 0.9rem;
+    letter-spacing: -0.01em;
 }
 
 .watchlist-item-name {
-    color: #64748b;
-    font-size: 0.78rem;
-    max-width: 140px;
+    color: #64748B;
+    font-size: 0.75rem;
+    max-width: 150px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -125,34 +169,39 @@
 }
 
 .watchlist-item-price {
-    font-size: 0.95rem;
-    color: #0f172a;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #0F172A;
+    font-variant-numeric: tabular-nums;
 }
 
 .watchlist-item-change {
-    font-size: 0.78rem;
+    font-size: 0.72rem;
+    font-weight: 700;
 }
 
 .watchlist-item-change.positive {
-    color: #16a34a;
+    color: #059669;
 }
 
 .watchlist-item-change.negative {
-    color: #dc2626;
+    color: #DC2626;
 }
 
 .watchlist-delete-btn {
-    background: none;
+    background: transparent;
     border: none;
-    color: #94a3b8;
-    font-size: 1.25rem;
+    color: #94A3B8;
     cursor: pointer;
-    padding: 0.2rem 0.4rem;
+    padding: 0.25rem;
     border-radius: 4px;
-    transition: color 0.15s ease, background-color 0.15s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s ease;
 }
 
 .watchlist-delete-btn:hover {
-    color: #dc2626;
-    background-color: #fee2e2;
+    color: #DC2626;
+    background-color: #FEE2E2;
 }

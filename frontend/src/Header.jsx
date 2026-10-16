@@ -3,7 +3,7 @@ import SearchBox from "./SearchBox";
 import { useEffect, useState } from "react";
 import { useNavigate, useLocation, Link } from "react-router-dom";
 
-function Header({ user, onLogout }) {
+function Header({ user }) {
   const [searchQuery, setSearchQuery] = useState(null);
   const [stock, setStock] = useState([]);
   const navigate = useNavigate();
@@ -37,87 +37,42 @@ function Header({ user, onLogout }) {
 
   return (
     <header className="topbar">
-      {isStockPage ? (
-        <div className="breadcrumb">
-          <span
-            style={{ cursor: "pointer", color: "#9ca3af" }}
-            onClick={() => navigate("/")}
-          >
-            Dashboard
-          </span>
-          <span style={{ margin: "0 0.5rem", color: "#9ca3af" }}>›</span>
-          <span style={{ color: "#6b7280" }}>Stocks</span>
-          <span style={{ margin: "0 0.5rem", color: "#9ca3af" }}>›</span>
-          <strong>{displayName.toUpperCase()}</strong>
-        </div>
-      ) : isWatchlistPage ? (
-        <div className="wl-header-left">
-          <h1 style={{ fontSize: "1.25rem", fontWeight: "700", color: "#0F172A", margin: 0 }}>
-            Watchlist
-          </h1>
-        </div>
-      ) : (
-        <div>
-          <h1>Market Dashboard</h1>
-        </div>
-      )}
-
-
-      <div style={{ display: "flex", alignItems: "center", gap: "1rem" }}>
-        <SearchBox stock={stock} setSearchQuery={setSearchQuery} />
-
-        {user ? (
-          <div style={{ display: "flex", alignItems: "center", gap: "0.75rem" }}>
-            <span
-              style={{
-                fontSize: "0.85rem",
-                fontWeight: "700",
-                color: "#059669",
-                background: "#ecfdf5",
-                padding: "0.4rem 0.75rem",
-                borderRadius: "8px",
-                border: "1px solid #d1fae5",
-              }}
-            >
-              ₹{user.virtualBalance?.toLocaleString("en-IN")}
-            </span>
-            <span style={{ fontSize: "0.9rem", fontWeight: "600", color: "#111827" }}>
-              {user.name}
-            </span>
+      {/* Left side title / breadcrumb */}
+      <div className="topbar-left">
+        {isStockPage ? (
+          <div className="breadcrumb">
             <button
-              onClick={onLogout}
-              style={{
-                border: "1px solid #e5e7eb",
-                background: "#ffffff",
-                color: "#ef4444",
-                padding: "0.45rem 0.85rem",
-                borderRadius: "8px",
-                cursor: "pointer",
-                fontSize: "0.85rem",
-                fontWeight: "600",
-                transition: "all 0.15s ease",
-              }}
+              className="breadcrumb-btn"
+              onClick={() => navigate("/")}
             >
-              Sign out
+              Dashboard
             </button>
+            <span className="breadcrumb-slash">›</span>
+            <span className="breadcrumb-item">Stocks</span>
+            <span className="breadcrumb-slash">›</span>
+            <span className="breadcrumb-current">{displayName.toUpperCase()}</span>
+          </div>
+        ) : isWatchlistPage ? (
+          <div className="header-title-block">
+            <h1 className="header-title">Watchlist</h1>
+            <p className="header-subtitle">Monitored assets & real-time movements</p>
           </div>
         ) : (
-          <Link
-            to="/login"
-            style={{
-              backgroundColor: "#141c2d",
-              color: "#ffffff",
-              textDecoration: "none",
-              padding: "0.55rem 1.15rem",
-              borderRadius: "8px",
-              fontSize: "0.875rem",
-              fontWeight: "600",
-              display: "inline-flex",
-              alignItems: "center",
-              gap: "0.35rem",
-            }}
-          >
-            Sign in
+          <div className="header-title-block">
+            <h1 className="header-title">Market Dashboard</h1>
+            <p className="header-subtitle">Real-time Indian indices & simulated paper trading</p>
+          </div>
+        )}
+      </div>
+
+      {/* Right side controls */}
+      <div className="topbar-right">
+        <SearchBox stock={stock} setSearchQuery={setSearchQuery} />
+
+        {!user && (
+          <Link to="/login" className="header-signin-btn">
+            <span>Sign in</span>
+            <span className="signin-arrow">→</span>
           </Link>
         )}
       </div>

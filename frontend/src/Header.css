@@ -1,35 +1,217 @@
+/* Clean Professional Terminal Header Styles */
 .topbar {
+    width: 100%;
+    box-sizing: border-box;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid #E2E8F0;
-    padding-bottom: 1rem;
-    background-color: #F8FAFC;
+    background: #FFFFFF;
+    border: 1px solid #E2E8F0;
+    border-radius: 12px;
+    padding: 0.85rem 1.5rem;
+    min-height: 68px;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 1px 3px rgba(15, 23, 42, 0.03), 0 4px 12px rgba(15, 23, 42, 0.02);
+    gap: 1.5rem;
+}
+
+.topbar-left {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.header-title-block {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+}
+
+.header-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #0F172A;
+    margin: 0;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+}
+
+.header-subtitle {
+    font-size: 0.75rem;
+    color: #64748B;
+    margin: 0;
+    font-weight: 500;
+}
+
+/* Breadcrumbs for stock detail page */
+.breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.875rem;
+}
+
+.breadcrumb-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: #64748B;
+    font-size: 0.875rem;
+    font-weight: 600;
+    padding: 0.25rem 0.5rem;
+    border-radius: 6px;
+    transition: all 0.15s ease;
+}
+
+.breadcrumb-btn:hover {
+    color: #0284C7;
+    background: #F0F9FF;
+}
+
+.breadcrumb-slash {
+    color: #CBD5E1;
+    font-size: 0.85rem;
+}
+
+.breadcrumb-item {
+    color: #64748B;
+    font-weight: 500;
+}
+
+.breadcrumb-current {
+    color: #0F172A;
+    font-weight: 700;
+    background: #F1F5F9;
+    padding: 0.2rem 0.6rem;
+    border-radius: 6px;
+    border: 1px solid #E2E8F0;
+    letter-spacing: 0.02em;
+}
+
+/* Topbar Right Controls */
+.topbar-right {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 1rem;
+    flex: 1;
+    max-width: 460px;
 }
 
 .search-section {
     display: flex;
     align-items: center;
-    gap: 12px;
-    margin-right: 80px;
+    width: 100%;
 }
 
-.search-section input {
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    margin-right: 10px;
+.header-signin-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background: #0D1322;
+    color: #FFFFFF;
+    text-decoration: none;
+    padding: 0.5rem 1.15rem;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    white-space: nowrap;
+    transition: all 0.18s ease;
 }
 
-.search-section button {
-    padding: 10px 15px;
-    border-radius: 5px;
-    background-color: black;
-    color: white;
-    border: none;
+.header-signin-btn:hover {
+    background: #1E293B;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(13, 19, 34, 0.2);
+}
+
+.signin-arrow {
+    transition: transform 0.15s ease;
+}
+
+.header-signin-btn:hover .signin-arrow {
+    transform: translateX(3px);
+}
+
+/* Stock Search Dropdown Popup Styling */
+.stock-search-option-item {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    width: 100% !important;
+    padding: 0.65rem 0.9rem !important;
     cursor: pointer;
+    border-radius: 8px;
+    box-sizing: border-box;
 }
 
-.search-section button:hover {
-    background-color: rgb(60, 57, 57);
+.search-option-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+    min-width: 0;
+    flex: 1;
+}
+
+.search-option-header-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.search-option-symbol {
+    font-size: 0.875rem;
+    font-weight: 700;
+    color: #0F172A;
+    letter-spacing: -0.01em;
+    transition: color 0.15s ease;
+}
+
+.search-option-exchange-tag {
+    font-size: 0.6rem;
+    font-weight: 700;
+    padding: 0.1rem 0.35rem;
+    border-radius: 4px;
+    letter-spacing: 0.04em;
+    line-height: 1;
+}
+
+.search-option-exchange-tag.bse {
+    background: #EFF6FF;
+    color: #2563EB;
+    border: 1px solid #DBEAFE;
+}
+
+.search-option-exchange-tag.nse {
+    background: #F0FDF4;
+    color: #16A34A;
+    border: 1px solid #DCFCE7;
+}
+
+.search-option-company-name {
+    font-size: 0.74rem;
+    color: #64748B;
+    font-weight: 500;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 250px;
+}
+
+.search-option-arrow-icon {
+    display: flex;
+    align-items: center;
+    color: #CBD5E1;
+    margin-left: 0.5rem;
+    transition: all 0.15s ease;
+}
+
+.stock-search-option-item:hover .search-option-symbol {
+    color: #0284C7;
+}
+
+.stock-search-option-item:hover .search-option-arrow-icon {
+    color: #0284C7;
+    transform: translateX(2px);
 }
