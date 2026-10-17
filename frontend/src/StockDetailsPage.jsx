@@ -1,15 +1,18 @@
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useParams, useNavigate } from "react-router-dom";
 import "./StockDetailsPage.css";
 import StockChart from "./StockChart";
 import KeyMetrics from "./KeyMetrics";
 import WatchlistButton from "./WatchlistButton";
+import TradeModal from "./TradeModal";
 
 export default function StockDetailsPage() {
     const { symbol } = useParams();
+    const navigate = useNavigate();
     const [stockData, setStockData] = useState(null);
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [showTradeModal, setShowTradeModal] = useState(false);
 
     useEffect(() => {
         async function fetchDetails() {
@@ -32,10 +35,8 @@ export default function StockDetailsPage() {
     if (isLoading) {
         return (
             <div className="stock-details">
-                <div className="card stock-details-card">
-                    <div className="loading-msg">
-                        Loading...Please wait
-                    </div>
+                <div className="stock-details-card">
+                    <div className="loading-msg">Loading asset details...</div>
                 </div>
             </div>
         );
@@ -43,55 +44,79 @@ export default function StockDetailsPage() {
     if (error || !stockData) {
         return (
             <div className="stock-details">
-                <div className="card stock-details-card" style={{ textAlign: "center", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "1rem" }}>
-                    <div className="error-msg">
-                        Error: {error}
-                    </div>
-                    <Link to="/" className="btn btn-primary" >Go Back to Dashboard</Link>
+                <div className="stock-details-card" style={{ textAlign: "center", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "1rem" }}>
+                    <div className="error-msg">Error: {error}</div>
+                    <Link to="/" className="btn btn-primary">Go Back to Dashboard</Link>
                 </div>
             </div>
         );
     }
+    const isPositive = (stockData?.change ?? 0) >= 0;
 
     return (
-        <div className="stock-details">
-            <div className="card stock-details-card">
-                <div className="tags">
-                    <span>{stockData?.exchange} - {stockData?.symbol?.split(".")[0]}</span>
-                </div>
-                <div className="card-header">
-                    <h2>{stockData?.name}</h2>
-                    <div className="button">
-                        <WatchlistButton stockData={stockData} />
-                        <button className="btn btn-secondary">Buy Shares</button>
+        <>
+            {showTradeModal && (
+                <TradeModal
+                    isOpen={showTradeModal}
+                    onClose={() => setShowTradeModal(false)}
+                    stock={stockData}
+                />
+            )}
+            <div className="stock-details">
+                <div className="stock-details-card">
+                    <div className="tags">
+                        <span>{stockData?.exchange || "NSE"} • {stockData?.symbol?.split(".")[0]}</span>
+                    </div>
+                    <div className="card-header">
+                        <h2>{stockData?.name}</h2>
+                        <div className="stock-action-buttons">
+                            <WatchlistButton stockData={stockData} />
+                            <button
+                                type="button"
+                                className="btn btn-trade "
+                                onClick={() => {
+                                    setShowTradeModal(true);
+                                }}
+                                title="Execute paper trade order"
+                            >
+                                <span>Trade</span>
+                            </button>
+                        </div>
+                    </div>
+                    {stockData?.summary && (
+                        <p className="company-subtitle">{stockData.summary}</p>
+                    )}
+                    <div className="current-price">
+                        <h2>₹{stockData?.price?.toLocaleString('en-IN', { minimumFractionDigits: 2 })}</h2>
+                        <span className={isPositive ? "positive" : "negative"}>
+                            {isPositive ? "▲ +" : "▼ "}{stockData?.change?.toFixed(2)} ({stockData?.changePercent?.toFixed(2)}%)
+                        </span>
                     </div>
                 </div>
-                <p className="company-subtitle">{stockData?.summary}</p>
-                <div className="current-price">
-                    <h2>₹{stockData?.price?.toLocaleString('en-IN')}</h2>
-                    <span className={stockData?.change >= 0 ? "positive" : "negative"}>
-                        [ {stockData?.change >= 0 ? "+" : ""}{stockData?.change?.toFixed(2)} ({stockData?.changePercent?.toFixed(2)}%)]
-                    </span>
+
+                <div className="chart-and-metrics">
+                    <StockChart symbol={stockData.symbol} />
+                    <KeyMetrics stockData={stockData} />
                 </div>
-            </div >
-            <div className="chart-and-metrics">
-                <StockChart symbol={stockData.symbol} />
-                <KeyMetrics stockData={stockData} />
+
+                {/* Bottom Twin Cards: Analysts Rating & Market News with empty space for user implementation */}
+                <div className="analysis-and-news">
+                    <div className="analysis">
+                        <h2>Analysts Rating</h2>
+                        <div className="analysis-empty-space">
+                            <p>AI Agent will Provide Rating soon........</p>
+                        </div>
+                    </div>
+
+                    <div className="news">
+                        <h2>Market News</h2>
+                        <div className="analysis-empty-space">
+                            <p>News will Provide Soon........</p>
+                        </div>
+                    </div>
+                </div>
+
             </div>
-            <div className="analysis-and-news">
-                <div className="analysis">
-                    <h2>Analysts Rating</h2>
-                    <div>
-                        <p style={{ textAlign: "center", paddingTop: "100px" }}>AI Agent will Provide Rating soon........</p>
-                    </div>
-                </div>
-                <div className="news">
-                    <h2>Market News</h2>
-                    <div>
-                        <p style={{ textAlign: "center", paddingTop: "100px" }}>News will Provide Soon........</p>
-                    </div>
-                </div>
-            </div>
-        </div>
+        </>
     );
 }

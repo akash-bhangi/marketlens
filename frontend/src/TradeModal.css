@@ -1,0 +1,30 @@
+.trade-modal-overlay {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    background-color: rgba(15, 23, 42, 0.45);
+    backdrop-filter: blur(4px);
+}
+
+.trade-modal-card {
+    width: 100%;
+    max-width: 460px;
+    background-color: #FFFFFF;
+    border-radius: 16px;
+    box-shadow: 0 16px 60px rgba(15, 23, 42, 0.25);
+    margin: 0 1rem;
+    padding: 1.5rem;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.trade-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
