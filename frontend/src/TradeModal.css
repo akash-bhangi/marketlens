@@ -28,3 +28,61 @@
     justify-content: space-between;
     align-items: flex-start;
 }
+
+.trade-modal-title {
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.trade-ticker-pill {
+    display: inline-block;
+    background-color: #F1F5F9;
+    color: #475569;
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 6px;
+    width: fit-content;
+    margin-top: 2px;
+}
+
+.trade-subtitle {
+    font-size: 0.75rem;
+    color: #64748B;
+    margin: 0.25rem 0 0 0;
+}
+
+.trade-close-btn {
+    border: none;
+    background: none;
+    cursor: pointer;
+}
+
+.trade-type-switcher {
+    display: flex;
+    background-color: #e7eaee;
+    gap: 4px;
+    padding: 4px;
+    border-radius: 10px;
+}
+
+.trade-type-btn {
+    flex: 1;
+    border: none;
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 8px;
+    font-weight: 600;
+    background: none;
+    color: #475569;
+}
+
+.trade-type-btn.buy.active {
+    background-color: #047857;
+    color: #FFFFFF;
+}
+
+.trade-type-btn.sell.active {
+    background-color: #DC2626;
+    color: #FFFFFF;
+}

@@ -66,6 +66,14 @@ export default function TradeModal({
         </div>
 
       </div>
+      <div className="trade-modal-card-body">
+        <div className="trade-modal-content">
+          <h3 className="trade-modal-price">Current Market Price</h3>
+          <h4 className="trade-modal-price-value"></h4>
+
+
+        </div>
+      </div>
     </div >
   );
 }

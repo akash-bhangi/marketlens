@@ -30,24 +30,38 @@
   display: flex;
   align-items: center;
   gap: 0.75rem;
+  text-decoration: none;
+  color: inherit;
+  transition: opacity 0.15s ease;
+}
+
+.auth-brand-header:hover {
+  opacity: 0.9;
 }
 
 .brand-logo-icon {
-  font-size: 1.6rem;
-  background: rgba(255, 255, 255, 0.08);
-  padding: 0.4rem 0.6rem;
-  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  background: rgba(56, 189, 248, 0.12);
+  border: 1px solid rgba(56, 189, 248, 0.25);
+  border-radius: 10px;
+  flex-shrink: 0;
 }
 
 .brand-title {
   font-size: 1.35rem;
   font-weight: 700;
   letter-spacing: -0.02em;
+  color: #FFFFFF;
 }
 
 .brand-tagline {
-  font-size: 0.8rem;
-  color: #94a3b8;
+  font-size: 0.78rem;
+  color: #94A3B8;
+  letter-spacing: 0.01em;
 }
 
 .auth-left-content {
@@ -60,7 +74,7 @@
   gap: 0.5rem;
   font-size: 0.75rem;
   font-weight: 700;
-  color: #10b981;
+  color: #10B981;
   letter-spacing: 0.05em;
   margin-bottom: 1.25rem;
 }
@@ -68,9 +82,9 @@
 .live-dot {
   width: 7px;
   height: 7px;
-  background-color: #10b981;
+  background-color: #10B981;
   border-radius: 50%;
-  box-shadow: 0 0 8px #10b981;
+  box-shadow: 0 0 8px #10B981;
 }
 
 .auth-headline {
@@ -83,7 +97,7 @@
 
 .auth-subheadline {
   font-size: 0.95rem;
-  color: #94a3b8;
+  color: #94A3B8;
   line-height: 1.55;
   max-width: 420px;
   margin: 0 0 1.75rem 0;
@@ -108,12 +122,12 @@
 .market-index-label {
   font-size: 0.8rem;
   font-weight: 600;
-  color: #94a3b8;
+  color: #94A3B8;
 }
 
 .market-pill-change {
   background: rgba(16, 185, 129, 0.15);
-  color: #34d399;
+  color: #34D399;
   font-size: 0.75rem;
   font-weight: 700;
   padding: 0.2rem 0.55rem;
@@ -153,31 +167,39 @@
 .stat-label {
   font-size: 0.65rem;
   font-weight: 600;
-  color: #64748b;
+  color: #64748B;
   letter-spacing: 0.04em;
 }
 
 .stat-val {
   font-size: 0.875rem;
   font-weight: 700;
-  color: #e2e8f0;
+  color: #E2E8F0;
 }
 
 .status-open {
-  color: #34d399;
+  color: #34D399;
 }
 
 .auth-left-footer {
   display: flex;
+  align-items: center;
   gap: 0.6rem;
   font-size: 0.75rem;
-  color: #64748b;
+  color: #64748B;
+}
+
+.footer-feature {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  color: #94A3B8;
 }
 
 /* Right Panel */
 .auth-right-panel {
   flex: 1;
-  background-color: #ffffff;
+  background-color: #FFFFFF;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -206,22 +228,22 @@
 .form-title {
   font-size: 2.1rem;
   font-weight: 800;
-  color: #0f172a;
+  color: #0F172A;
   margin: 0 0 0.4rem 0;
   letter-spacing: -0.03em;
 }
 
 .form-desc {
   font-size: 0.9rem;
-  color: #64748b;
+  color: #64748B;
   margin: 0 0 1.5rem 0;
   line-height: 1.45;
 }
 
 .auth-error-box {
-  background-color: #fef2f2;
-  border: 1px solid #fecaca;
-  color: #dc2626;
+  background-color: #FEF2F2;
+  border: 1px solid #FECACA;
+  color: #DC2626;
   padding: 0.65rem 0.85rem;
   border-radius: 8px;
   font-size: 0.85rem;
@@ -243,7 +265,7 @@
 .field-group label {
   font-size: 0.85rem;
   font-weight: 600;
-  color: #1e293b;
+  color: #1E293B;
 }
 
 .input-with-icon {
@@ -255,25 +277,33 @@
 .input-icon {
   position: absolute;
   left: 0.85rem;
-  font-size: 0.9rem;
-  color: #94a3b8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #94A3B8;
   pointer-events: none;
 }
 
 .input-with-icon input {
   width: 100%;
-  padding: 0.75rem 2.5rem 0.75rem 2.6rem;
-  border: 1.5px solid #e2e8f0;
-  border-radius: 8px;
+  padding: 0.75rem 2.6rem 0.75rem 2.6rem;
+  border: 1.5px solid #E2E8F0;
+  border-radius: 9px;
   font-size: 0.9rem;
   outline: none;
+  background-color: #FFFFFF;
+  color: #0F172A;
   transition: border-color 0.15s ease, box-shadow 0.15s ease;
   box-sizing: border-box;
 }
 
 .input-with-icon input:focus {
-  border-color: #2563eb;
-  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+  border-color: #0284C7;
+  box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.12);
+}
+
+.input-with-icon input::placeholder {
+  color: #94A3B8;
 }
 
 .toggle-password-btn {
@@ -282,7 +312,17 @@
   background: transparent;
   border: none;
   cursor: pointer;
-  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.25rem;
+  border-radius: 4px;
+  color: #94A3B8;
+  transition: color 0.15s ease;
+}
+
+.toggle-password-btn:hover {
+  color: #0F172A;
 }
 
 .checkbox-row {
@@ -299,7 +339,7 @@
 
 .checkbox-row label {
   font-size: 0.8rem;
-  color: #64748b;
+  color: #64748B;
   line-height: 1.4;
   cursor: pointer;
 }
@@ -321,7 +361,7 @@
 }
 
 .forgot-link {
-  color: #2563eb;
+  color: #0284C7;
   font-weight: 600;
   cursor: pointer;
 }
@@ -331,20 +371,27 @@
 }
 
 .submit-auth-btn {
-  background-color: #2563eb;
-  color: #ffffff;
+  background: linear-gradient(135deg, #0284C7 0%, #2563EB 100%);
+  color: #FFFFFF;
   border: none;
   padding: 0.85rem;
-  border-radius: 8px;
+  border-radius: 9px;
   font-size: 0.95rem;
-  font-weight: 600;
+  font-weight: 700;
   cursor: pointer;
-  transition: background-color 0.15s ease;
+  box-shadow: 0 2px 10px rgba(37, 99, 235, 0.25);
+  transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
   margin-top: 0.5rem;
 }
 
 .submit-auth-btn:hover:not(:disabled) {
-  background-color: #1d4ed8;
+  background: linear-gradient(135deg, #0369A1 0%, #1D4ED8 100%);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35);
+}
+
+.submit-auth-btn:active:not(:disabled) {
+  transform: translateY(0);
 }
 
 .submit-auth-btn:disabled {
@@ -356,11 +403,11 @@
   text-align: center;
   margin-top: 1.5rem;
   font-size: 0.875rem;
-  color: #64748b;
+  color: #64748B;
 }
 
 .form-subfooter a {
-  color: #2563eb;
+  color: #0284C7;
   font-weight: 600;
   text-decoration: none;
 }
@@ -368,3 +415,4 @@
 .form-subfooter a:hover {
   text-decoration: underline;
 }
+

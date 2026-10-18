@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "./Auth.css";
 
 export default function AuthLayout({ children, headline, subheadline }) {
@@ -5,13 +6,18 @@ export default function AuthLayout({ children, headline, subheadline }) {
     <div className="auth-page">
       {/* Left Dark Showcase Panel */}
       <div className="auth-left-panel">
-        <div className="auth-brand-header">
-          <div className="brand-logo-icon">📈</div>
+        <Link to="/" className="auth-brand-header">
+          <div className="brand-logo-icon">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#38BDF8" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <polyline points="22 7 13.5 15.5 8.5 10.5 2 17" />
+              <polyline points="16 7 22 7 22 13" />
+            </svg>
+          </div>
           <div>
             <div className="brand-title">MarketLens</div>
             <div className="brand-tagline">Indian market intelligence</div>
           </div>
-        </div>
+        </Link>
 
         <div className="auth-left-content">
           <div className="live-market-badge">
@@ -21,7 +27,7 @@ export default function AuthLayout({ children, headline, subheadline }) {
           <h1 className="auth-headline">{headline}</h1>
           <p className="auth-subheadline">{subheadline}</p>
 
-          {/* Mini NIFTY 50 Card from Figma */}
+          {/* Mini NIFTY 50 Card */}
           <div className="auth-market-card">
             <div className="market-card-top">
               <span className="market-index-label">NSE • NIFTY 50</span>
@@ -71,11 +77,16 @@ export default function AuthLayout({ children, headline, subheadline }) {
         </div>
 
         <div className="auth-left-footer">
-          <span>🛡️ Secure access</span>
+          <span className="footer-feature">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+            </svg>
+            256-Bit SSL Security
+          </span>
           <span>•</span>
-          <span>Educational tools</span>
+          <span>Educational Analysis</span>
           <span>•</span>
-          <span>Paper trading with virtual funds</span>
+          <span>Virtual Paper Trading</span>
         </div>
       </div>
 
@@ -84,3 +95,4 @@ export default function AuthLayout({ children, headline, subheadline }) {
     </div>
   );
 }
+
