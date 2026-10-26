@@ -209,15 +209,52 @@
 }
 
 .wl-table-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     padding: 1.1rem 1.5rem;
     border-bottom: 1px solid #F1F5F9;
 }
 
-.wl-table-title h4 {
+.wl-table-title {
     margin: 0;
-    font-size: 0.88rem;
+    font-size: 1.05rem;
     font-weight: 700;
     color: #0F172A;
+}
+
+.wl-table-subtitle {
+    margin: 0.2rem 0 0 0;
+    font-size: 0.75rem;
+    color: #94A3B8;
+}
+
+.wl-table-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.wl-action-outline-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    background-color: #FFFFFF;
+    border: 1px solid #E2E8F0;
+    color: #334155;
+    padding: 0.45rem 0.85rem;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.wl-action-outline-btn:hover {
+    background-color: #F8FAFC;
+    border-color: #CBD5E1;
+    color: #0F172A;
+}
     letter-spacing: 0.04em;
 }
 
@@ -331,9 +368,51 @@
 }
 
 .wl-col-range {
-    font-size: 0.8rem;
-    color: #64748B;
-    font-variant-numeric: tabular-nums;
+    display: flex;
+    align-items: center;
+}
+
+/* Visual Day Range Slider */
+.wl-range-cell {
+    width: 85%;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.wl-range-bar-track {
+    height: 4px;
+    background-color: #E2E8F0;
+    border-radius: 2px;
+    position: relative;
+    width: 100%;
+}
+
+.wl-range-bar-fill {
+    position: absolute;
+    height: 100%;
+    background-color: #93C5FD;
+    border-radius: 2px;
+}
+
+.wl-range-marker {
+    position: absolute;
+    top: -3px;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: #2563EB;
+    border: 2px solid #FFFFFF;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+    transform: translateX(-50%);
+}
+
+.wl-range-labels {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.7rem;
+    color: #94A3B8;
+    font-weight: 500;
 }
 
 .wl-col-volume {
@@ -391,4 +470,27 @@
     background-color: #FEE2E2;
     border-color: #FECACA;
     color: #DC2626;
+}
+
+/* Table Card Footer */
+.wl-table-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.85rem 1.5rem;
+    border-top: 1px solid #F1F5F9;
+    font-size: 0.75rem;
+    color: #94A3B8;
+    background-color: #FFFFFF;
+}
+
+.wl-footer-count {
+    font-weight: 500;
+}
+
+.wl-footer-refresh {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: #94A3B8;
 }

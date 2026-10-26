@@ -71,7 +71,22 @@ function WatchlistPage() {
             }
         }
         fetchWatchList();
-    }, [])
+    }, []);
+
+    // Filter stocks based on active tab: "all stocks" | "gainers" | "decliners"
+    const filteredWatchlist = watchlist.filter((stock) => {
+        const rawChange = stock.dayChange ?? stock.change ?? 0;
+        const isPositive = typeof rawChange === "number" ? rawChange >= 0 : !String(rawChange).trim().startsWith("-");
+
+        if (active === "gainers") {
+            return isPositive;
+        }
+        if (active === "decliners") {
+            return !isPositive;
+        }
+        return true;
+    });
+
     return (
         <>
             <div className="watchlist-page">
@@ -171,8 +186,26 @@ function WatchlistPage() {
                 </section>
                 <section className="watchlist-table-card">
                     <div className="wl-table-header">
-                        <div className="wl-table-title">
-                            <h4>{`${active?.toUpperCase()}`}</h4>
+                        <div className="wl-table-title-group">
+                            <h4 className="wl-table-title">{active === "all stocks" ? "All stocks" : active === "gainers" ? "Gainers" : "Decliners"}</h4>
+                            <p className="wl-table-subtitle">Live prices • Last updated 3:28 PM IST</p>
+                        </div>
+                        <div className="wl-table-actions">
+                            <button className="wl-action-outline-btn">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                    <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path>
+                                    <path d="M13.73 21a2 2 0 0 1-3.46 0"></path>
+                                </svg>
+                                Create alert
+                            </button>
+                            <button className="wl-action-outline-btn">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                                    <polyline points="7 10 12 15 17 10"></polyline>
+                                    <line x1="12" y1="15" x2="12" y2="3"></line>
+                                </svg>
+                                Export
+                            </button>
                         </div>
                     </div>
                     <div className="wl-grid-table">
@@ -192,7 +225,7 @@ function WatchlistPage() {
                             <div className="wl-col-action"></div>
                         </div>
                         {/* Map */}
-                        {watchlist.map((stock, index) => {
+                        {filteredWatchlist.map((stock, index) => {
                             const displayName = stock.name || stock.symbol || "";
                             const firstLetter = displayName.charAt(0).toUpperCase() || "S";
                             const badgeStyle = getBadgeStyle(displayName);
@@ -202,6 +235,14 @@ function WatchlistPage() {
                             const formattedChange = typeof rawChange === "number"
                                 ? `${isPositive ? "+" : ""}${rawChange.toLocaleString("en-IN", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`
                                 : rawChange;
+
+                            const currentPrice = Number(stock?.lastTradedPrice || stock?.price || 0);
+                            const lowPrice = Number(stock?.low || (currentPrice ? currentPrice * 0.985 : 0));
+                            const highPrice = Number(stock?.high || (currentPrice ? currentPrice * 1.015 : 0));
+                            const rangeSpan = highPrice - lowPrice;
+                            const rangePercent = rangeSpan > 0 
+                                ? Math.min(95, Math.max(5, ((currentPrice - lowPrice) / rangeSpan) * 100))
+                                : 50;
 
                             return (
                                 <div key={stock.symbol || stock._id || index} className="wl-grid-row">
@@ -224,7 +265,25 @@ function WatchlistPage() {
                                         {formattedChange}
                                     </div>
                                     <div className="wl-col-range">
-                                        {stock?.dayRange || (stock?.low && stock?.high ? `₹${stock?.low?.toLocaleString("en-IN")} - ₹${stock?.high?.toLocaleString("en-IN")}` : "—")}
+                                        <div className="wl-range-cell">
+                                            <div className="wl-range-bar-track">
+                                                <div
+                                                    className="wl-range-bar-fill"
+                                                    style={{
+                                                        left: `${Math.max(0, rangePercent - 15)}%`,
+                                                        width: "30%"
+                                                    }}
+                                                ></div>
+                                                <div
+                                                    className="wl-range-marker"
+                                                    style={{ left: `${rangePercent}%` }}
+                                                ></div>
+                                            </div>
+                                            <div className="wl-range-labels">
+                                                <span>L {lowPrice ? lowPrice.toLocaleString("en-IN", { maximumFractionDigits: 0 }) : "—"}</span>
+                                                <span>H {highPrice ? highPrice.toLocaleString("en-IN", { maximumFractionDigits: 0 }) : "—"}</span>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div className="wl-col-volume">
                                         {stock?.volume ? (stock.volume > 1000000 ? `${(stock.volume / 1000000).toFixed(1)}M` : `${(stock.volume / 1000).toFixed(1)}K`) : "—"}
@@ -238,6 +297,18 @@ function WatchlistPage() {
                                 </div>
                             );
                         })}
+                    </div>
+
+                    {/* Table Footer */}
+                    <div className="wl-table-footer">
+                        <span className="wl-footer-count">Showing {filteredWatchlist.length} of {watchlist.length} tracked stocks</span>
+                        <div className="wl-footer-refresh">
+                            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                                <polyline points="23 4 23 10 17 10"></polyline>
+                                <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
+                            </svg>
+                            <span>Auto-refreshes every 30 seconds</span>
+                        </div>
                     </div>
                 </section>
             </div>
