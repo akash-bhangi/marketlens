@@ -29,7 +29,7 @@ function MainAppShell({ index, news, user, onLoginSuccess, onLogout }) {
         <Header user={user} onLogout={onLogout} />
         <Routes>
           <Route path="/" element={<MarketOverview index={index} news={news} />} />
-          <Route path="/stock/:symbol" element={<StockDetailsPage />} />
+          <Route path="/stock/:symbol" element={<StockDetailsPage user={user} />} />
           <Route path="/watchlist" element={<WatchlistPage />} />
         </Routes>
       </main>

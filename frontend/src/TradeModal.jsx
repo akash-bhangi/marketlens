@@ -1,7 +1,23 @@
-import React from "react";
+import { useState } from "react";
 import "./TradeModal.css";
 
-export default function TradeModal({ isOpen, onClose, stock }) {
+export default function TradeModal({ isOpen, onClose, stock, user }) {
+  const [tradeType, setTradeType] = useState("BUY");
+  const [quantity, setQuantity] = useState(1);
+
+  const currentPrice = stock?.price || 0;
+  const change = stock?.change || 0;
+  const changePercent = stock?.changePercent || 0;
+  const isPositive = change >= 0;
+  const virtualBalance = user?.virtualBalance || 0;
+  const orderValue = currentPrice * quantity;
+  const remainingBalance = tradeType === "BUY"
+    ? virtualBalance - orderValue
+    : virtualBalance + orderValue;
+
+  const insufficientFunds = tradeType === "BUY" && orderValue > virtualBalance;
+
+
   if (!isOpen) return null;
 
   const symbolWithoutSuffix = (stock?.symbol || "TCS.NS").split(".")[0];
@@ -37,7 +53,7 @@ export default function TradeModal({ isOpen, onClose, stock }) {
 
         {/* 2. BUY / SELL Segmented Switcher */}
         <div className="trade-type-switcher">
-          <button type="button" className="trade-type-btn buy active">
+          <button type="button" className={`trade-type-btn buy  ${tradeType === "BUY" ? "active" : ""}`} onClick={() => setTradeType("BUY")}>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
               <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
               <polyline points="17 6 23 6 23 12"></polyline>
@@ -45,7 +61,7 @@ export default function TradeModal({ isOpen, onClose, stock }) {
             BUY
           </button>
 
-          <button type="button" className="trade-type-btn sell">
+          <button type="button" className={`trade-type-btn sell ${tradeType === "SELL" ? "active" : ""}`} onClick={() => setTradeType("SELL")}>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
               <polyline points="23 18 13.5 8.5 8.5 13.5 1 6"></polyline>
               <polyline points="17 18 23 18 23 12"></polyline>
@@ -60,9 +76,9 @@ export default function TradeModal({ isOpen, onClose, stock }) {
             <span className="trade-price-title">Current Market Price (NSE)</span>
           </div>
           <div className="trade-price-row">
-            <span className="trade-price-val">₹3,586.20</span>
-            <span className="trade-price-badge pos">
-              +22.65 (+0.64%)
+            <span className="trade-price-val">₹{currentPrice.toLocaleString("en-IN")}</span>
+            <span className={`trade-price-badge ${isPositive ? "pos" : "neg"}`}>
+              {isPositive ? "▲+" : "▼"}{change.toLocaleString("en-IN", { minimumFractionDigits: 2, maximumFractionDigits: 2 })} ({isPositive ? "+" : ""}{changePercent.toLocaleString("en-IN", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}%)
             </span>
           </div>
         </div>
@@ -85,16 +101,21 @@ export default function TradeModal({ isOpen, onClose, stock }) {
             <span className="trade-order-badge">Market Order</span>
           </div>
           <div className="trade-stepper-control">
-            <button type="button" className="trade-stepper-btn">−</button>
-            <input type="number" className="trade-stepper-input" defaultValue="1" />
-            <button type="button" className="trade-stepper-btn">+</button>
+            <button type="button" className="trade-stepper-btn" onClick={() => setQuantity((prev) => Math.max(1, prev - 1))}>−</button>
+            <input type="number" className="trade-stepper-input" min="1" value={quantity} onChange={(e) => setQuantity(Math.max(1, parseInt(e.target.value) || 1))} />
+            <button type="button" className="trade-stepper-btn" onClick={() => setQuantity((prev) => Math.max(1, prev + 1))}>+</button>
           </div>
           <div className="trade-quick-chips">
-            <button type="button">+1</button>
-            <button type="button">+5</button>
-            <button type="button">+10</button>
-            <button type="button">+25</button>
-            <button type="button" className="max">Max</button>
+            <button type="button" onClick={() => setQuantity((prev) => Math.max(1, prev + 1))}>+1</button>
+            <button type="button" onClick={() => setQuantity((prev) => Math.max(1, prev + 5))}>+5</button>
+            <button type="button" onClick={() => setQuantity((prev) => Math.max(1, prev + 10))}>+10</button>
+            <button type="button" onClick={() => setQuantity((prev) => Math.max(1, prev + 25))}>+25</button>
+            <button type="button" className="max" onClick={() => {
+              if (currentPrice && currentPrice > 0) {
+                const maxShares = Math.floor((virtualBalance || 0) / currentPrice);
+                setQuantity(Math.max(1, maxShares))
+              }
+            }}>Max</button>
           </div>
         </div>
 
@@ -102,28 +123,41 @@ export default function TradeModal({ isOpen, onClose, stock }) {
         <div className="trade-breakdown-box">
           <div className="trade-breakdown-row">
             <span className="breakdown-label">Estimated Order Value</span>
-            <span className="breakdown-val highlight">₹3,586.20</span>
+            <span className="breakdown-val highlight">₹{orderValue.toLocaleString("en-IN")}</span>
           </div>
           <div className="trade-breakdown-row">
             <span className="breakdown-label">Available Virtual Funds</span>
-            <span className="breakdown-val">₹10,00,000.00</span>
+            <span className="breakdown-val">₹{virtualBalance.toLocaleString("en-IN")}</span>
           </div>
           <div className="trade-breakdown-row">
             <span className="breakdown-label remaining">
               <span className="status-dot"></span>
               Remaining Balance
             </span>
-            <span className="breakdown-val">₹9,96,413.80</span>
+            <span className={`breakdown-val ${remainingBalance < 0 ? "negative" : ""}`}>₹{remainingBalance.toLocaleString("en-IN")}</span>
           </div>
         </div>
 
         {/* 7. Action Button */}
-        <button type="button" className="trade-execute-btn buy">
+        <button type="button" className={`trade-execute-btn ${tradeType === "BUY" ? "buy" : "sell"}`} disabled={insufficientFunds}>
+
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-            <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
-            <polyline points="17 6 23 6 23 12"></polyline>
+            {tradeType === "BUY" ? (
+              <>
+                <polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline>
+                <polyline points="17 6 23 6 23 12"></polyline>
+              </>
+            ) : (
+              <>
+                <polyline points="23 18 13.5 8.5 8.5 13.5 1 6"></polyline>
+                <polyline points="17 18 23 18 23 12"></polyline>
+              </>
+            )}
           </svg>
-          <span>Execute Buy Order • ₹3,586.20</span>
+          <span>{insufficientFunds
+            ? "Insufficient Funds"
+            : `Execute ${tradeType === "BUY" ? "Buy" : "Sell"} Order • ₹${orderValue.toLocaleString("en-IN", { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`
+          }</span>
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
             <line x1="5" y1="12" x2="19" y2="12"></line>
             <polyline points="12 5 19 12 12 19"></polyline>

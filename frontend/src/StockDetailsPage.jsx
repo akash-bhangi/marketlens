@@ -6,7 +6,7 @@ import KeyMetrics from "./KeyMetrics";
 import WatchlistButton from "./WatchlistButton";
 import TradeModal from "./TradeModal";
 
-export default function StockDetailsPage() {
+export default function StockDetailsPage({ user }) {
     const { symbol } = useParams();
     const navigate = useNavigate();
     const [stockData, setStockData] = useState(null);
@@ -55,13 +55,6 @@ export default function StockDetailsPage() {
 
     return (
         <>
-            {showTradeModal && (
-                <TradeModal
-                    isOpen={showTradeModal}
-                    onClose={() => setShowTradeModal(false)}
-                    stock={stockData}
-                />
-            )}
             <div className="stock-details">
                 <div className="stock-details-card">
                     <div className="tags">
@@ -117,6 +110,15 @@ export default function StockDetailsPage() {
                 </div>
 
             </div>
+            {showTradeModal && (
+                <TradeModal
+                    isOpen={showTradeModal}
+                    onClose={() => setShowTradeModal(false)}
+                    stock={stockData}
+                    user={user}
+
+                />
+            )}
         </>
     );
 }
